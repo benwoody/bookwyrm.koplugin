@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Lua and busted
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -yqq lua5.4 liblua5.4-dev luarocks
+          luarocks --local install busted
+
+      - name: Run tests
+        run: ~/.luarocks/bin/busted --verbose

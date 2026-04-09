@@ -1,0 +1,14 @@
+# Build artifacts
+build/
+bookwyrm.koplugin.zip
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
